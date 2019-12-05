@@ -173,21 +173,6 @@
       }
     ],
     "@typescript-eslint/member-ordering": "warn",
-    "@typescript-eslint/no-magic-numbers": [
-      "error",
-      {
-        "ignoreNumericLiteralTypes": true,
-        "ignoreEnums": true,
-        "enforceConst": true,
-        "ignoreReadonlyClassProperties": true,
-        "ignore": [
-          0,
-          24,
-          60,
-          1000
-        ]
-      }
-    ],
     "@typescript-eslint/brace-style": [
       "error",
       "1tbs"
