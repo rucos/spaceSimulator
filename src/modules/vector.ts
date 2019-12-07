@@ -90,6 +90,10 @@ export default class Vector implements IVector {
      * Получить значени рассчетанной гравитационной силы
 	 *  f = g * massJ.m / dSq * (dSq + s)^½
 	 *
+     * @param m
+     * @param dx
+     * @param dy
+     * @param dz
      * @return number
      * */
 	private getCalculateGravitationalForce(m: number, dx: number, dy: number, dz: number): number {
@@ -102,6 +106,9 @@ export default class Vector implements IVector {
      * Произведение суммы квадратов расстояния между massI и massJ
      *  по осям x, y и z
      *
+     * @param dx
+     * @param dy
+     * @param dz
      * @return number
      * */
 	private getDistanceSq(dx: number, dy: number, dz: number): number {
