@@ -1,5 +1,5 @@
-import IMasses from './modules/massesType'
-import Vector from '../src/modules/vectors'
+import IMasses from './modules/types/massesType'
+import Vector from './modules/vector'
 
 const masses: IMasses[] = []
 const g = 39.5
@@ -20,8 +20,23 @@ masses.push({
 	az: 0,
 })
 
+masses.push({
+	name: 'Mercury',
+	m: 1.65956463e-7,
+	x: -0.346390408691506,
+	y: -0.272465544507684,
+	z: 0.00951633403684172,
+	vx: 4.25144321778261,
+	vy: -7.61778341043381,
+	vz: -1.01249478093275,
+	ax: 0,
+	ay: 0,
+	az: 0,
+})
+
 const v = new Vector(g, dt, masses, softeningConstant)
 v.updatePositionVectors()
-	.updatePositionVectors()
+	.updateAccelerationVectors()
+	.updateVelocityVectors()
 
 console.log(masses)
