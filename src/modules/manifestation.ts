@@ -85,9 +85,11 @@ export default class Manifestation implements IManifestation {
      * @return number
      * */
 	private getCalculateTransparency(i: number): number {
-		let transparency = 1
+		let transparency = 0
 
-		if (i > 0) {
+		if (i === this.positions.length - 1) {
+			transparency = 1
+		} else {
 			transparency = i / this.positions.length / 2
 		}
 
@@ -101,9 +103,11 @@ export default class Manifestation implements IManifestation {
      * @return number
      * */
 	private getCircleScaleFactor(i: number): number {
-		let circleScaleFactor = 1
+		let circleScaleFactor = 0
 
-		if (i > 0) {
+		if (i === this.positions.length - 1) {
+			circleScaleFactor = 1
+		} else {
 			circleScaleFactor = i / this.positions.length
 		}
 

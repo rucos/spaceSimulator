@@ -1,3 +1,5 @@
+import IManifestation from './manifestationType'
+
 export default interface IMasses {
 	/**
      * Имя объекта
@@ -29,4 +31,9 @@ export default interface IMasses {
 	ax: number
 	ay: number
 	az: number
+
+	/**
+	 * Экземпляр элемента canvas
+	 * */
+	manifestation: IManifestation
 }

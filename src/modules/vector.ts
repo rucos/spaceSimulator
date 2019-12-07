@@ -41,6 +41,10 @@ export default class Vector implements IVector {
      * */
 	updateAccelerationVectors(): IVector {
 		this.masses.forEach((massI, i) => {
+			let ax = 0
+			let ay = 0
+			let az = 0
+
 			this.masses.forEach((massJ, j) => {
 				if (i !== j) {
 					const dx = massJ.x - massI.x
@@ -48,11 +52,15 @@ export default class Vector implements IVector {
 					const dz = massJ.z - massI.z
 					const f = this.getCalculateGravitationalForce(massJ.m, dx, dy, dz)
 
-					massI.ax += dx * f
-					massI.ay += dy * f
-					massI.az += dz * f
+					ax += dx * f
+					ay += dy * f
+					az += dz * f
 				}
 			})
+
+			massI.ax = ax
+			massI.ay = ay
+			massI.az = az
 		})
 
 		return this
