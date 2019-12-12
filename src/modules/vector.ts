@@ -1,7 +1,7 @@
+import IAnimate from './types/animateType'
 import IMasses from './types/massesType'
 import IPosition from './types/positionType'
 import IVector from './types/vectorType'
-import IAnimate from './types/animateType'
 
 export default class Vector implements IVector {
 	/**
