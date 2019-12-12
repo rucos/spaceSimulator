@@ -1,3 +1,4 @@
+import IAnimate from './animateType'
 import IMasses from './massesType'
 
 export default interface IVector {
@@ -31,7 +32,8 @@ export default interface IVector {
 	/**
 	 * Анимация движения космических тел
 	 *
+	 * @param animateObj
 	 * @return void
 	 * */
-	animate(ctx: CanvasRenderingContext2D, scale: number, width: number, height: number): void
+	animate(animateObj: IAnimate): void
 }

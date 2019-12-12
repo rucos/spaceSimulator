@@ -1,6 +1,7 @@
 import IMasses from './types/massesType'
 import IPosition from './types/positionType'
 import IVector from './types/vectorType'
+import IAnimate from './types/animateType'
 
 export default class Vector implements IVector {
 	/**
@@ -100,7 +101,15 @@ export default class Vector implements IVector {
 		})
 	}
 
-	public animate(ctx: CanvasRenderingContext2D, scale: number, width: number, height: number): void {
+	/**
+	 * Анимация движения космических тел
+	 *
+	 * @param animateObj
+	 * @return void
+	 * */
+	public animate(animateObj: IAnimate): void {
+		const { ctx, scale, width, height } = animateObj
+
 		this.updatePositionVectors()
 			.updateAccelerationVectors()
 			.updateVelocityVectors()
@@ -122,7 +131,7 @@ export default class Vector implements IVector {
 			}
 		})
 
-		requestAnimationFrame(this.animate.bind(this, ctx, scale, width, height))
+		requestAnimationFrame(this.animate.bind(this, animateObj))
 	}
 
 	/**

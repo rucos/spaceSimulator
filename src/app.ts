@@ -1,3 +1,4 @@
+import IAnimate from './modules/types/animateType'
 import Vector from './modules/vector'
 import getMasses from './modules/getMasses'
 
@@ -21,12 +22,15 @@ const dt = 0.008 // 0,008 года равно 2,92 дня
 const softeningConstant = 0.15
 const width = canvas.width = window.innerWidth
 const height = canvas.height = window.innerHeight
-
 const vectors = new Vector(
 	g,
 	dt,
 	getMasses(ctx, trailLength, radius),
-	softeningConstant)
+	softeningConstant
+)
 
-vectors.animate(ctx, scale, width, height)
+vectors.animate({ ctx,
+	scale,
+	width,
+	height } as IAnimate)
 
