@@ -2,24 +2,6 @@ import IMasses from './massesType'
 
 export default interface IVector {
 	/**
-	 * Гравитационная постоянная
-	 * @var number
-	 * */
-	g: number
-
-	/**
-	 * Временной шаг
-	 * @var number
-	 * */
-	dt: number
-
-	/**
-	 * Величина размягчения
-	 * @var number
-	 * */
-	softeningConstant: number
-
-	/**
 	 * Список космических тел
 	 * @var number
 	 * */
@@ -45,4 +27,11 @@ export default interface IVector {
 	 * @return IVector
 	 * */
 	updateAccelerationVectors(): IVector
+
+	/**
+	 * Анимация движения космических тел
+	 *
+	 * @return void
+	 * */
+	animate(ctx: CanvasRenderingContext2D, scale: number, width: number, height: number): void
 }

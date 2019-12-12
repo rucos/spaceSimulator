@@ -1,37 +1,43 @@
 import IMasses from './types/massesType'
+import IPosition from './types/positionType'
 import IVector from './types/vectorType'
 
 export default class Vector implements IVector {
 	/**
+	 * Список космических тел
+	 * @var number
+	 * */
+	public masses: IMasses[]
+
+	/**
      * Временной шаг
      * @var number
      * */
-	dt: number
+	private readonly dt: number
 
 	/**
      * Гравитационная постоянная
      * @var number
      * */
-	g: number
-
-	/**
-     * Список космических тел
-     * @var number
-     * */
-	masses: IMasses[]
+	private readonly g: number
 
 	/**
      * Величина размягчения
      * @var number
      * */
-	softeningConstant: number
+	private readonly softeningConstant: number
 
+	/**
+	* @param g
+	* @param dt
+	* @param masses
+	* @param softeningConstant
+	* */
 	constructor(g: number, dt: number, masses: IMasses[], softeningConstant: number) {
 		this.g = g
 		this.dt = dt
 		this.masses = masses
 		this.softeningConstant = softeningConstant
-
 	}
 
 	/**
@@ -39,7 +45,7 @@ export default class Vector implements IVector {
      *
      * @return IVector
      * */
-	updateAccelerationVectors(): IVector {
+	public updateAccelerationVectors(): IVector {
 		this.masses.forEach((massI, i) => {
 			let ax = 0
 			let ay = 0
@@ -71,7 +77,7 @@ export default class Vector implements IVector {
      *
      * @return IVector
      * */
-	updatePositionVectors(): IVector {
+	public updatePositionVectors(): IVector {
 		this.masses.forEach(el => {
 			el.x += el.vx * this.dt
 			el.y += el.vy * this.dt
@@ -86,12 +92,37 @@ export default class Vector implements IVector {
      *
      * @return void
      * */
-	updateVelocityVectors(): void {
+	public updateVelocityVectors(): void {
 		this.masses.forEach(el => {
 			el.vx += el.ax * this.dt
 			el.vy += el.ay * this.dt
 			el.vz += el.az * this.dt
 		})
+	}
+
+	public animate(ctx: CanvasRenderingContext2D, scale: number, width: number, height: number): void {
+		this.updatePositionVectors()
+			.updateAccelerationVectors()
+			.updateVelocityVectors()
+
+		ctx.clearRect(0, 0, width, height)
+
+		this.masses.forEach(massI => {
+			const position: IPosition = {
+				x: width / 2 + massI.x * scale,
+				y: height / 2 + massI.y * scale,
+			}
+
+			massI.manifestation.draw(position)
+
+			if (massI.name) {
+				ctx.font = '14px Arial'
+				ctx.fillText(massI.name, position.x + 12, position.y + 4)
+				ctx.fill()
+			}
+		})
+
+		requestAnimationFrame(this.animate.bind(this, ctx, scale, width, height))
 	}
 
 	/**
@@ -122,5 +153,4 @@ export default class Vector implements IVector {
 	private getDistanceSq(dx: number, dy: number, dz: number): number {
 		return dx * dx + dy * dy + dz * dz
 	}
-
 }
