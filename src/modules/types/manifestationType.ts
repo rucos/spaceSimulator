@@ -4,7 +4,7 @@ export default interface IManifestation {
 	/**
      * Контекст рисования для элемента canvas
      * */
-	ctx: any
+	ctx: CanvasRenderingContext2D
 
 	/**
      * Длина траектории движения,

@@ -1,7 +1,7 @@
-import IMasses from './types/massesType'
-import Manifestation from './manifestation'
+import IMasses from '../types/massesType'
+import Manifestation from '../manifestation'
 
-export default (ctx: any, trailLength: number, radius: number): IMasses[] => [
+export default (ctx: CanvasRenderingContext2D, trailLength: number, radius: number): IMasses[] => [
 	{
 		name: 'Sun', // в качестве единицы массы используем солнечную, поэтому масса Солнца равна 1
 		m: 1,
